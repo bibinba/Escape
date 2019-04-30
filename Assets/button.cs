@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class button : MonoBehaviour
 {
     public Image image;
+    public GameObject kanazuti;
     public Sprite[]room= new Sprite[4];
     public Sprite roomk;
     public AudioSource closedoor;
@@ -63,6 +64,7 @@ public class button : MonoBehaviour
            image.sprite= roomk;
             room[1] = roomk;
             key = true;
+            kanazuti.SetActive(true);
         }
 
     }
@@ -72,12 +74,19 @@ public class button : MonoBehaviour
         if (roomnow==0&&key == true)
         {
            opendoor.Play();
-            SceneManager.LoadScene("End");
+
+            StartCoroutine(End());
         }
         else if(roomnow == 0 && key == false)
         {
             closedoor.Play();
         }
      
+    }
+    IEnumerator End()
+    {
+        
+        yield return new WaitForSeconds(1.2f);
+        SceneManager.LoadScene("End");
     }
 }
