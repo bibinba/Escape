@@ -12,6 +12,9 @@ public class button : MonoBehaviour
     public AudioSource closedoor;
     public AudioSource opendoor;
     public AudioSource getkey;
+    public AudioSource piano;
+    public AudioSource senion;
+
     int roomnow = 0;
     bool key=false;
     // Start is called before the first frame update
@@ -23,7 +26,11 @@ public class button : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButton(0))
+
+        {
+          //  touchon.Play();
+        }
     }
 
     public void OnRightButton()
@@ -38,6 +45,7 @@ public class button : MonoBehaviour
         }
 
         image.sprite = room[roomnow];
+        senion.Play();
         Debug.Log(roomnow);
     }
 
@@ -68,21 +76,24 @@ public class button : MonoBehaviour
         }
 
     }
-
+    public void OnPianoButton()
+    {
+        piano.Play();
+    }
     public void Ondoor()
     {
-        if (roomnow==0&&key == true)
+        if (roomnow == 0 && key == true)
         {
-           opendoor.Play();
+            opendoor.Play();
 
             StartCoroutine(End());
         }
-        else if(roomnow == 0 && key == false)
+        else if (roomnow == 0 && key == false)
         {
             closedoor.Play();
         }
-     
     }
+  
     IEnumerator End()
     {
         
